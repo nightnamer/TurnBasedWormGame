@@ -102,8 +102,9 @@ public class SpawnManager : MonoBehaviour
                 UpdateToNewPlayer(0);
             }
             winnerImage.enabled = true;
-            _cmCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = 3;
-            _cmCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            _cmCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = 5f;
+            _cmCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.x = 0.5f;
+            _cmCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.y = 2f;
         }
     }
 }

@@ -210,7 +210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b8d9dd7193684428588be92cb29b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key_jump: 0
+  keyJump: 0
+  key1: 0
+  key2: 0
+  _weapon1: {fileID: 5421603756399254412, guid: 3839a911bb207c84aa8054c862c907dd, type: 3}
+  _weapon2: {fileID: 5421603756399254412, guid: 5f234c95dde84d34185a4edb3041b88a, type: 3}
 --- !u!114 &3153291327085302664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47ba0fb92081547af187ef08e12b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
+  maxDistance: 25
   previousLocation: {x: 0, y: 0, z: 0}
 --- !u!114 &1539053816138699280
 MonoBehaviour:
@@ -275,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf578c546a2fb3d418e8f5bdb0d1a04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaBar: {fileID: 0}
   stamina: 0
   maxStamina: 10
 --- !u!54 &3153291327085302671

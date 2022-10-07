@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         //_grounded = (Physics.Raycast(playerBody.transform.position, Vector3.down, 0.5f,1 << LayerMask.NameToLayer("Ground")));
         //int c = 0 | 192;
         _grounded = (Physics.Raycast(playerBody.transform.position, Vector3.down, (playerBody.transform.localScale.y/2f)+0.4f,_layerMask));
-        if (_input.key_jump)
+        if (_input.keyJump)
         {
             _jumpBuffer = 80f;
         }

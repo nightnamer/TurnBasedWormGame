@@ -21,16 +21,18 @@ public class CameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         
-        
         var m_h = Input.GetAxis("Mouse X");
         var m_v = Input.GetAxis("Mouse Y");
         turn.x += m_h;
         turn.y += m_v;
         turn.y = Mathf.Clamp(turn.y, -clampYaxis, clampYaxis);
-        
-        followObject.transform.localRotation = Quaternion.Euler(-turn.y,turn.x,0f);
 
-     
-        
+        if (followObject == null)
+        {
+            FindObjectOfType<SpawnManager>().GetComponent<SpawnManager>().NextPlayer();
+            Debug.LogWarning("Report");
+            return;
+        }
+        followObject.transform.localRotation = Quaternion.Euler(-turn.y,turn.x,0f);
     }
 }

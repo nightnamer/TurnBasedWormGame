@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemLauncher : MonoBehaviour
+public class RocketLauncher : MonoBehaviour
 {
     public GameObject projectilePrefab;
     private Vector3 _force;
@@ -44,7 +44,7 @@ public class ItemLauncher : MonoBehaviour
         {
             _forceMultiplier += 0.005f;
             _forceMultiplier = Mathf.Clamp(_forceMultiplier, 0.3f, 2f);
-             _force = (transform.forward * 400f + transform.up * 500f + transform.right * 150f)*_forceMultiplier; 
+             _force = (transform.forward * 400f + transform.up * 400f + transform.right * 150f)*_forceMultiplier; 
             lineRenderer.DrawCurvedTrajectory(_force);
         }
         else if (Input.GetMouseButtonUp(0))
@@ -54,7 +54,7 @@ public class ItemLauncher : MonoBehaviour
 
             GameObject missile = Instantiate(projectilePrefab,transform.GetChild(0).transform.position,transform.rotation);
             missile.GetComponent<Rigidbody>().AddForce(_force);
-            missile.GetComponent<MissileBehaviour>()._damage = _damage;
+            missile.GetComponent<MissileBehaviour>().damage = _damage;
         }
     }
 }

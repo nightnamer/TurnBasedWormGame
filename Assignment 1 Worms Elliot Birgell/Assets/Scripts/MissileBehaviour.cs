@@ -8,12 +8,14 @@ public class MissileBehaviour : MonoBehaviour
 {
     //private SpawnManager _spawnManager;
     private HealthController _health;
-    private float triggerCooldown = 0.5f;
-    public float _damage;
+    public float triggerCooldown = 0.5f;
+    public float damage;
 
     private CameraController _camera;
     private CinemachineVirtualCamera _cmCam;
     private SpawnManager _spawnManager;
+
+    public bool _dropExplo = true;
 
     [SerializeField] private float explosionRadius = 3;
     [SerializeField] private GameObject explosionPrefab;
@@ -46,8 +48,11 @@ public class MissileBehaviour : MonoBehaviour
         ExplodeMissile(transform.position,explosionRadius); //create explosion
 
         //camera
-        _camera.followObject = explosionPrefab.transform;
-        _cmCam.Follow = _camera.followObject;
+        if (_dropExplo)
+        {
+            _camera.followObject = explosionPrefab.transform;
+            _cmCam.Follow = _camera.followObject;
+        }
 
         //Destroy
         Destroy(gameObject);
@@ -62,19 +67,12 @@ public class MissileBehaviour : MonoBehaviour
             if (hitCollider.gameObject.GetComponentInParent<HealthController>())
             {
                 var target = hitCollider.gameObject.GetComponentInParent<HealthController>();
-                target.health -= _damage;
+                target.health -= damage;
                 target.GetComponentInChildren<HealthBar>().UpdateHealthbar(target.maxHealth,target.health);
                 target.GetComponent<Rigidbody>().AddExplosionForce(30,transform.position,explosionRadius,10,ForceMode.Impulse);
             }
         }
-        explosionPrefab = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        if (_dropExplo) explosionPrefab = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 
-    private void OnDrawGizmos()
-    {
-        print("Draw");
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position,3);
-    }
-    
 }
